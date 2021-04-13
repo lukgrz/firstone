@@ -40,12 +40,11 @@ public class CollectionTestSuite {
         //Given
         List<Integer> theList = Arrays.asList(4,3,5,6,12,15,29872);
         OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
+        List<Integer> expectedList = Arrays.asList(4,6,12,29872);
         //When
         List <Integer> result = oddNumbersExterminator.exterminate(theList);
         //Then
-        for (Integer number:result){
-            Assertions.assertEquals(0,number%2);
-        }
+        Assertions.assertEquals(expectedList,result);
         System.out.println("All numbers are even"+result);
     }
 }
