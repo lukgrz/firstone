@@ -16,5 +16,8 @@ public class StreamMain {
         poemBeautifier.beautify("biedronka",String::toUpperCase);
         poemBeautifier.beautify("stokrotka",(tekst -> tekst.replace(""," ")));
         poemBeautifier.beautify("nosorożer",(tekst -> tekst.replace("o","*")));
+
+        System.out.println("Using Stream to generate even numbers from 1 to 20");
+        com.kodilla.stream.iterate.NumbersGenerator.generateEven(20);
     }
 }
