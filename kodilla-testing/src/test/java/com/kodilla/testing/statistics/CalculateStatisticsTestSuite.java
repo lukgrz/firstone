@@ -26,9 +26,6 @@ public class CalculateStatisticsTestSuite {
         List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
         int examplePostsNumber = 0;
         int exampleCommentsNumber = 100;
-        double expectedPostPerUser = (double)examplePostsNumber/exampleUserNames.size();
-        double expectedCommentsPerUser = (double)exampleCommentsNumber/exampleUserNames.size();
-        double expectedCommentsPerPost = 0;
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
         when(statisticsMock.userNames()).thenReturn(exampleUserNames);
         when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
@@ -36,9 +33,9 @@ public class CalculateStatisticsTestSuite {
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(expectedPostPerUser,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(expectedCommentsPerPost,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(expectedCommentsPerUser,calculateStatistics.getNumberCommentsPerUser());
+        assertEquals(0,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(20,calculateStatistics.getNumberCommentsPerUser());
     }
 
     @Test
@@ -46,9 +43,6 @@ public class CalculateStatisticsTestSuite {
         List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
         int examplePostsNumber = 1000;
         int exampleCommentsNumber = 100;
-        double expectedPostPerUser = (double)examplePostsNumber/exampleUserNames.size();
-        double expectedCommentsPerUser = (double)exampleCommentsNumber/exampleUserNames.size();
-        double expectedCommentsPerPosts = (double)exampleCommentsNumber/examplePostsNumber;
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
         when(statisticsMock.userNames()).thenReturn(exampleUserNames);
         when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
@@ -56,9 +50,9 @@ public class CalculateStatisticsTestSuite {
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(expectedPostPerUser,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(expectedCommentsPerPosts,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(expectedCommentsPerUser,calculateStatistics.getNumberCommentsPerUser());
+        assertEquals(200,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0.1,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(20,calculateStatistics.getNumberCommentsPerUser());
 
     }
 
@@ -67,9 +61,6 @@ public class CalculateStatisticsTestSuite {
         List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
         int examplePostsNumber = 100;
         int exampleCommentsNumber = 0;
-        double expectedPostPerUser = (double)examplePostsNumber/exampleUserNames.size();
-        double expectedCommentsPerUser = (double)exampleCommentsNumber/exampleUserNames.size();
-        double expectedCommentsPerPosts = (double)exampleCommentsNumber/examplePostsNumber;
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
         when(statisticsMock.userNames()).thenReturn(exampleUserNames);
         when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
@@ -77,9 +68,9 @@ public class CalculateStatisticsTestSuite {
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(expectedPostPerUser,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(expectedCommentsPerPosts,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(expectedCommentsPerUser,calculateStatistics.getNumberCommentsPerUser());
+        assertEquals(20,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0,calculateStatistics.getNumberCommentsPerUser());
     }
 
     @Test
@@ -87,9 +78,6 @@ public class CalculateStatisticsTestSuite {
         List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
         int examplePostsNumber = 5;
         int exampleCommentsNumber = 100;
-        double expectedPostPerUser = (double)examplePostsNumber/exampleUserNames.size();
-        double expectedCommentsPerUser = (double)exampleCommentsNumber/exampleUserNames.size();
-        double expectedCommentsPerPosts = (double)exampleCommentsNumber/examplePostsNumber;
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
         when(statisticsMock.userNames()).thenReturn(exampleUserNames);
         when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
@@ -97,9 +85,9 @@ public class CalculateStatisticsTestSuite {
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(expectedPostPerUser,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(expectedCommentsPerPosts,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(expectedCommentsPerUser,calculateStatistics.getNumberCommentsPerUser());
+        assertEquals(1,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(20,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(20,calculateStatistics.getNumberCommentsPerUser());
     }
 
     @Test
@@ -107,9 +95,6 @@ public class CalculateStatisticsTestSuite {
         List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
         int examplePostsNumber = 100;
         int exampleCommentsNumber = 50;
-        double expectedPostPerUser = (double)examplePostsNumber/exampleUserNames.size();
-        double expectedCommentsPerUser = (double)exampleCommentsNumber/exampleUserNames.size();
-        double expectedCommentsPerPosts = (double)exampleCommentsNumber/examplePostsNumber;
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
         when(statisticsMock.userNames()).thenReturn(exampleUserNames);
         when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
@@ -117,9 +102,9 @@ public class CalculateStatisticsTestSuite {
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(expectedPostPerUser,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(expectedCommentsPerPosts,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(expectedCommentsPerUser,calculateStatistics.getNumberCommentsPerUser());
+        assertEquals(20,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0.5,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(10,calculateStatistics.getNumberCommentsPerUser());
     }
 
     @Test
@@ -127,9 +112,6 @@ public class CalculateStatisticsTestSuite {
         List<String> exampleUserNames = new ArrayList<>();
         int examplePostsNumber = 100;
         int exampleCommentsNumber = 100;
-        double expectedPostPerUser = 0;
-        double expectedCommentsPerUser = 0;
-        double expectedCommentsPerPosts = (double)exampleCommentsNumber/examplePostsNumber;
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
         when(statisticsMock.userNames()).thenReturn(exampleUserNames);
         when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
@@ -137,9 +119,9 @@ public class CalculateStatisticsTestSuite {
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(expectedPostPerUser,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(expectedCommentsPerPosts,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(expectedCommentsPerUser,calculateStatistics.getNumberCommentsPerUser());
+        assertEquals(0,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(1,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0,calculateStatistics.getNumberCommentsPerUser());
     }
     public List<String> generateUsers(int i){
         List<String> userList = new ArrayList<>();
@@ -153,9 +135,6 @@ public class CalculateStatisticsTestSuite {
         List<String> exampleUserNames = generateUsers(100);
         int examplePostsNumber = 100;
         int exampleCommentsNumber = 100;
-        double expectedPostPerUser = (double)examplePostsNumber/exampleUserNames.size();
-        double expectedCommentsPerUser = (double)exampleCommentsNumber/exampleUserNames.size();
-        double expectedCommentsPerPosts = (double)exampleCommentsNumber/examplePostsNumber;
         CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
         when(statisticsMock.userNames()).thenReturn(exampleUserNames);
         when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
@@ -163,8 +142,8 @@ public class CalculateStatisticsTestSuite {
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(expectedPostPerUser,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(expectedCommentsPerPosts,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(expectedCommentsPerUser,calculateStatistics.getNumberCommentsPerUser());
+        assertEquals(1,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(1,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(1,calculateStatistics.getNumberCommentsPerUser());
     }
 }
