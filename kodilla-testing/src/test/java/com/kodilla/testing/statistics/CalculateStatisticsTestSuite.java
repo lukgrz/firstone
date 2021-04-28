@@ -2,127 +2,21 @@ package com.kodilla.testing.statistics;
 
 import com.kodilla.testing.forum.statistics.CalculateStatistics;
 import com.kodilla.testing.forum.statistics.Statistics;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
 public class CalculateStatisticsTestSuite {
 
-    @Mock
-    private Statistics statisticsMock;
+    Statistics statisticsMock = mock(Statistics.class);
+    CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
 
-    @Test
-    void testCalculateStatisticsWith0Posts() {
-        List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
-        int examplePostsNumber = 0;
-        int exampleCommentsNumber = 100;
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
-        when(statisticsMock.userNames()).thenReturn(exampleUserNames);
-        when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
-        when(statisticsMock.commentsCount()).thenReturn(exampleCommentsNumber);
-        //When
-        calculateStatistics.calculateAdvStatistics(statisticsMock);
-        //Then
-        assertEquals(0,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(0,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(20,calculateStatistics.getNumberCommentsPerUser());
-    }
-
-    @Test
-    void testCalculateStatisticsWith1000posts() {
-        List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
-        int examplePostsNumber = 1000;
-        int exampleCommentsNumber = 100;
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
-        when(statisticsMock.userNames()).thenReturn(exampleUserNames);
-        when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
-        when(statisticsMock.commentsCount()).thenReturn(exampleCommentsNumber);
-        //When
-        calculateStatistics.calculateAdvStatistics(statisticsMock);
-        //Then
-        assertEquals(200,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(0.1,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(20,calculateStatistics.getNumberCommentsPerUser());
-
-    }
-
-    @Test
-    void testCalculateStatisticsWith0Comments() {
-        List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
-        int examplePostsNumber = 100;
-        int exampleCommentsNumber = 0;
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
-        when(statisticsMock.userNames()).thenReturn(exampleUserNames);
-        when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
-        when(statisticsMock.commentsCount()).thenReturn(exampleCommentsNumber);
-        //When
-        calculateStatistics.calculateAdvStatistics(statisticsMock);
-        //Then
-        assertEquals(20,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(0,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(0,calculateStatistics.getNumberCommentsPerUser());
-    }
-
-    @Test
-    void testCalculateStatisticsWhenNumberOfCommentsIsHigherThanNumberOfPosts () {
-        List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
-        int examplePostsNumber = 5;
-        int exampleCommentsNumber = 100;
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
-        when(statisticsMock.userNames()).thenReturn(exampleUserNames);
-        when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
-        when(statisticsMock.commentsCount()).thenReturn(exampleCommentsNumber);
-        //When
-        calculateStatistics.calculateAdvStatistics(statisticsMock);
-        //Then
-        assertEquals(1,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(20,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(20,calculateStatistics.getNumberCommentsPerUser());
-    }
-
-    @Test
-    void testCalculateStatisticsWhenNumberOfPostsHigherIsHigherThanNumberOfComments() {
-        List<String> exampleUserNames = Arrays.asList("Mike","John","Wildcat","Big Boss","Nikolaj");
-        int examplePostsNumber = 100;
-        int exampleCommentsNumber = 50;
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
-        when(statisticsMock.userNames()).thenReturn(exampleUserNames);
-        when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
-        when(statisticsMock.commentsCount()).thenReturn(exampleCommentsNumber);
-        //When
-        calculateStatistics.calculateAdvStatistics(statisticsMock);
-        //Then
-        assertEquals(20,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(0.5,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(10,calculateStatistics.getNumberCommentsPerUser());
-    }
-
-    @Test
-    void testCalculateStatisticswith0Users() {
-        List<String> exampleUserNames = new ArrayList<>();
-        int examplePostsNumber = 100;
-        int exampleCommentsNumber = 100;
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
-        when(statisticsMock.userNames()).thenReturn(exampleUserNames);
-        when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
-        when(statisticsMock.commentsCount()).thenReturn(exampleCommentsNumber);
-        //When
-        calculateStatistics.calculateAdvStatistics(statisticsMock);
-        //Then
-        assertEquals(0,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(1,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(0,calculateStatistics.getNumberCommentsPerUser());
-    }
     public List<String> generateUsers(int i){
         List<String> userList = new ArrayList<>();
         for (int n=0;n<i;n++){
@@ -130,20 +24,117 @@ public class CalculateStatisticsTestSuite {
         }
         return userList;
     }
-    @Test
-    void testCalculateStatisticsWith100users(){
+    @BeforeEach
+    public void prepareData(){
         List<String> exampleUserNames = generateUsers(100);
-        int examplePostsNumber = 100;
-        int exampleCommentsNumber = 100;
-        CalculateStatistics calculateStatistics = new CalculateStatistics(statisticsMock);
+        int examplePostsNumber = 1000;
+        int exampleCommentsNumber = 0;
         when(statisticsMock.userNames()).thenReturn(exampleUserNames);
         when(statisticsMock.postsCount()).thenReturn(examplePostsNumber);
         when(statisticsMock.commentsCount()).thenReturn(exampleCommentsNumber);
+    }
+
+    @Test
+    void testCalculateStatisticsWith0Posts() {
+        //Given
+        when(statisticsMock.postsCount()).thenReturn(0);
         //When
         calculateStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        assertEquals(1,calculateStatistics.getNumberPostsPerUser());
-        assertEquals(1,calculateStatistics.getNumberCommentsPerPost());
-        assertEquals(1,calculateStatistics.getNumberCommentsPerUser());
+        assertEquals(0,statisticsMock.postsCount());
+        assertEquals(0,statisticsMock.commentsCount());
+        assertEquals(100,statisticsMock.userNames().size());
+        assertEquals(0,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0,calculateStatistics.getNumberCommentsPerUser());
+    }
+
+    @Test
+    void testCalculateStatisticsWith1000posts() {
+        //Given
+        //When
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        assertEquals(1000.0,statisticsMock.postsCount());
+        assertEquals(0.0,statisticsMock.commentsCount());
+        assertEquals(100.0,statisticsMock.userNames().size());
+        assertEquals(10.0,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerUser());
+
+    }
+
+    @Test
+    void testCalculateStatisticsWith0Comments() {
+        //Given
+        //When
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        assertEquals(1000.0,statisticsMock.postsCount());
+        assertEquals(0.0,statisticsMock.commentsCount());
+        assertEquals(100.0,statisticsMock.userNames().size());
+        assertEquals(10.0,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerUser());
+    }
+
+    @Test
+    void testCalculateStatisticsWhenNumberOfCommentsIsHigherThanNumberOfPosts () {
+        //Given
+        when(statisticsMock.postsCount()).thenReturn(1);
+        when(statisticsMock.commentsCount()).thenReturn(2);
+        //When
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        assertEquals(1.0,statisticsMock.postsCount());
+        assertEquals(2.0,statisticsMock.commentsCount());
+        assertEquals(100.0,statisticsMock.userNames().size());
+        assertEquals(0.01,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(2.0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0.02,calculateStatistics.getNumberCommentsPerUser());
+    }
+
+    @Test
+    void testCalculateStatisticsWhenNumberOfPostsHigherIsHigherThanNumberOfComments() {
+        //Given
+        //When
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        assertEquals(1000.0,statisticsMock.postsCount());
+        assertEquals(0.0,statisticsMock.commentsCount());
+        assertEquals(100.0,statisticsMock.userNames().size());
+        assertEquals(10.0,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerUser());
+    }
+
+    @Test
+    void testCalculateStatisticswith0Users() {
+        //Given
+        List<String> exampleUserNames = generateUsers(0);
+        when(statisticsMock.userNames()).thenReturn(exampleUserNames);
+        //When
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        assertEquals(1000.0,statisticsMock.postsCount());
+        assertEquals(0.0,statisticsMock.commentsCount());
+        assertEquals(0.0,statisticsMock.userNames().size());
+        assertEquals(0.0,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerUser());
+    }
+
+    @Test
+    void testCalculateStatisticsWith100users(){
+        //Given
+        //When
+        calculateStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        assertEquals(1000.0,statisticsMock.postsCount());
+        assertEquals(0.0,statisticsMock.commentsCount());
+        assertEquals(100.0,statisticsMock.userNames().size());
+        assertEquals(10.0,calculateStatistics.getNumberPostsPerUser());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerPost());
+        assertEquals(0.0,calculateStatistics.getNumberCommentsPerUser());
     }
 }
