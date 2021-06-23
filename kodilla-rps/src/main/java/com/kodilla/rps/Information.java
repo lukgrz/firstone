@@ -7,7 +7,7 @@ public class Information {
     }
 
     public void pointsToWinInformation(Human human) {
-        System.out.println("OK " + human.getName()+ " up to how much point you want to play???");
+        System.out.println("OK " + human.getName()+ " up to how many points you want to play???");
     }
 
     public void instructionInformation (int n) {

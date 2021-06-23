@@ -11,7 +11,7 @@ public class CpuPlayer implements Player{
     }
 
     public void cpuMove() {
-        move = 1+(new Random().nextInt(2));
+        move = 1+(new Random().nextInt(3));
     }
 
     public void addPoint() {
