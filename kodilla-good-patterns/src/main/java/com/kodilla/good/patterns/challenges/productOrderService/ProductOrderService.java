@@ -1,26 +1,27 @@
 package com.kodilla.good.patterns.challenges.productOrderService;
 
+import com.kodilla.good.patterns.challenges.productOrderService.information.InformationService;
+
 public class ProductOrderService {
     private InformationService informationService;
-    private BuyService buyService;
-    private BuyRepository buyRepository;
+    private OrderService orderService;
+    private OrderRepository orderRepository;
 
-    public ProductOrderService(InformationService informationService, BuyService buyService, BuyRepository buyRepository) {
+    public ProductOrderService(InformationService informationService, OrderService orderService, OrderRepository orderRepository) {
         this.informationService = informationService;
-        this.buyService = buyService;
-        this.buyRepository = buyRepository;
+        this.orderService = orderService;
+        this.orderRepository = orderRepository;
     }
 
-    public BuyDto process(final Busket busket) {
-        boolean isBought = buyService.buy(busket.getUser(), busket.getPrice(),
-                busket.getDayOfDelivery());
+    public OrderDto process(final Order order) {
+        boolean isOrdered = orderService.order(order.getUser(),order.getBasket());
 
-        if (isBought) {
-            informationService.inform(busket.getUser());
-            buyRepository.createBusket(busket.getUser(), busket.getPrice(), busket.getDayOfDelivery());
-            return new BuyDto(busket.getUser(), true);
+        if (isOrdered) {
+            informationService.inform(order.getUser());
+            orderRepository.createOrder(order.getUser(),order.getBasket());
+            return new OrderDto(order.getUser(), order.getBasket(),true);
         } else {
-            return new BuyDto(busket.getUser(), false);
+            return new OrderDto(order.getUser(), order.getBasket(), false);
         }
     }
 }
