@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenges.productOrderService;
 
-import java.util.HashMap;
+
 import java.util.Map;
 
 public class OrderRequestDto {
