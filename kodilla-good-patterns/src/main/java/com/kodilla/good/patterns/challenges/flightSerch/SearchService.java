@@ -21,9 +21,9 @@ public class SearchService {
     public void connectingFlights(Set<Flight> flights, String departureCity, String arrivalCity){
         flights.stream()
                 .filter(flight -> flight.getDepartureAirport().getCity().equals(departureCity))
-                .map(flight -> flight.getArrivalAirport().getCity())
-                .forEach(transitcity -> flights.stream()
-                        .filter(flight -> flight.getDepartureAirport().getCity().equals(transitcity))
+                .map(flight -> flight.getArrivalAirport().getIataCode())
+                .forEach(transitAirport -> flights.stream()
+                        .filter(flight -> flight.getDepartureAirport().getIataCode().equals(transitAirport))
                         .filter(flight -> flight.getArrivalAirport().getCity().equals(arrivalCity))
                         .forEach(System.out::println));
     }
