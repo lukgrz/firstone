@@ -27,7 +27,7 @@ public class OrderRetriver {
         Product orderedProduct = new Product("Tomato");
         Product orderedProduct1 = new Product("Bread");
 
-        order.put(orderedProduct, 10000000);
+        order.put(orderedProduct, 100);
         order.put(orderedProduct1, 10);
 
         return new OrderRequest(user,extraFoodShop,order);

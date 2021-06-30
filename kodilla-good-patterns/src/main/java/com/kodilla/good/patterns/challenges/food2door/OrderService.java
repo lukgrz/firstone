@@ -12,12 +12,14 @@ public class OrderService {
             if (orderRequest.getShop().getAvaliableProducts().containsKey(entry.getKey())) {
                 if (entry.getValue()<=orderRequest.getShop().getAvaliableProducts().get(entry.getKey())){
                     System.out.println(entry.getKey() + " is avaliable");
-                } else
+                } else {
                     System.out.println(entry.getKey() + " isn't avaliable");
                     isAvaliable = false;
-            } else
+                }
+            } else {
                 System.out.println(entry.getKey() + " isn't avaliable");
                 isAvaliable = false;
+            }
         }
         return isAvaliable;
     }

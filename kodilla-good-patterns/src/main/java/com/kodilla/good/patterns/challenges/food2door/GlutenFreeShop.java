@@ -7,16 +7,16 @@ public class GlutenFreeShop implements Shop{
     private Map<Product, Integer> avaliableProducts;
     private final int deliveryCost = 20;
 
-    public int process(OrderRequest orderRequest){
+    public GlutenFreeShop(Map<Product, Integer> avaliableProducts) {
+        this.avaliableProducts = avaliableProducts;
+    }
+
+    public int process(OrderRequest orderRequest) {
         int orderValue = 0;
         for (Map.Entry<Product, Integer> entry:orderRequest.getProducts().entrySet()){
             orderValue += entry.getKey().getPrice()* entry.getValue();
             }
         return orderValue+deliveryCost;
-    }
-
-    public GlutenFreeShop(Map<Product, Integer> avaliableProducts) {
-        this.avaliableProducts = avaliableProducts;
     }
 
     public String getName() {

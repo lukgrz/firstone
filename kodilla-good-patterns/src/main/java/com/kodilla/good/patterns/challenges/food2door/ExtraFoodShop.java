@@ -6,7 +6,11 @@ public class ExtraFoodShop implements Shop{
     final String name = "ExtraFoodShop";
     private Map<Product, Integer> avaliableProducts;
 
-    public int process(OrderRequest orderRequest){
+    public ExtraFoodShop(Map<Product, Integer> avaliableProducts) {
+        this.avaliableProducts = avaliableProducts;
+    }
+
+    public int process(OrderRequest orderRequest) {
         int orderValue = 0;
         for (Map.Entry<Product, Integer> entry:orderRequest.getProducts().entrySet()){
             orderValue += entry.getKey().getPrice()* entry.getValue();
@@ -15,10 +19,6 @@ public class ExtraFoodShop implements Shop{
             orderValue -= 10;
         }
         return orderValue;
-    }
-
-    public ExtraFoodShop(Map<Product, Integer> avaliableProducts) {
-        this.avaliableProducts = avaliableProducts;
     }
 
     public String getName() {
