@@ -10,6 +10,5 @@ public class Main {
                 new ProductOrderRepository());
         orderProcessor.process(orderRequest);
         System.out.println(orderProcessor.process(orderRequest));
-
     }
 }

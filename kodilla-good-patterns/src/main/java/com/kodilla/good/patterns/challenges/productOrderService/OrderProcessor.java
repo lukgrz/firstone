@@ -19,7 +19,8 @@ public class OrderProcessor {
             informationService.inform(orderRequest.getUserDto());
             orderRepository.withdraw(orderRequestDto);
             return new OrderResponse(orderRequest, true, orderService.calculateValue(orderRequestDto));
-        }else
+        } else {
             return new OrderResponse(orderRequest, false, orderService.calculateValue(orderRequestDto));
+        }
     }
 }
