@@ -11,7 +11,7 @@ public class SearchService {
         Set<Flight>resultFlights = flights.stream()
                 .filter(flight -> flight.getDepartureAirport().getCity().equals(city))
                 .collect(Collectors.toSet());
-        return   resultFlights;
+        return resultFlights;
     }
 
     public Set<Flight> flightsTo(Set<Flight> flights, String city) {
