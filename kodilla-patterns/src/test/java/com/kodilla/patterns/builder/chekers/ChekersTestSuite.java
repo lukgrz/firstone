@@ -22,7 +22,7 @@ public class ChekersTestSuite {
         //When
         Figure figureOne =  chekers.getBoard().getFigure(0, 3);
         Figure figureTwo = chekers.getBoard().getFigure(9, 7);
-        Figure figureThree = chekers.getBoard().getFigure(8, 2);
+        Figure figureThree = chekers.getBoard().getFigure(0, 2);
         Figure figureFour = chekers.getBoard().getFigure(1, 1);
 
         //Then
