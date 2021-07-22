@@ -16,7 +16,7 @@ public class BoardTestSuite {
         //When
         board.getToDoList().getTasks().add("zadanie do wykonania");
         board.getInProgressList().getTasks().add("zadanie w toku");
-        board.getDoneList().getTasks().add("zadanie wykoanane");
+        board.getDoneList().getTasks().add("zadanie wykonane");
         //Then
         System.out.println(board);
 
