@@ -21,4 +21,3 @@ public final class SimpleItem {
         return product.getProductPrice() * quantity;
     }
 }
-v
