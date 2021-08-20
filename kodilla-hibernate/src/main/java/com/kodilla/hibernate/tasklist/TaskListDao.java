@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TaskListDao extends CrudRepository<TaskList, Integer> {
 
-    List<TaskList> findByListName(String listname0);
+    List<TaskList> findByListName(String listname);
 }
