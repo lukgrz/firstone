@@ -91,7 +91,7 @@ public class CompanyDaoTestSuite {
         //When
         companyDao.save(weirdCompany);
         int id = weirdCompany.getId();
-        List<Company> companyList = companyDao.retrieveCompanyWithThreeFirstLetters("WEI%");
+        List<Company> companyList = companyDao.retrieveCompanyWithThreeFirstLetters("WEI");
 
         //Then
         assertEquals(1,companyList.size());
