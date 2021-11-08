@@ -5,12 +5,19 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Company.retrieveCompanyWithThreeFirstLetters",
-        query = "SELECT * FROM COMPANIES " +
-                "WHERE COMPANY_NAME LIKE :THREEFIRSTLETTERS '%'",
-        resultClass = Company.class
-)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.retrieveCompanyWithThreeFirstLetters",
+                query = "SELECT * FROM COMPANIES " +
+                        "WHERE COMPANY_NAME LIKE :THREEFIRSTLETTERS '%'",
+                resultClass = Company.class
+        ),
+        @NamedNativeQuery(
+                name = "Company.findByLetters",
+                query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE CONCAT('%', :ANYLETTERS , '%')",
+                resultClass = Company.class
+        )
+})
 
 @Entity
 @Table(name = "COMPANIES")
@@ -56,5 +63,10 @@ public class Company {
 
     private void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    @Override
+    public String toString() {
+        return companyName;
     }
 }
