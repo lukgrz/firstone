@@ -1,8 +1,6 @@
 package com.kodilla.hibernate.task;
 
-import com.kodilla.hibernate.task.dao.TaskFinancialDetailsDao;
 import com.kodilla.hibernate.tasklist.TaskList;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
